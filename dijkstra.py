@@ -16,3 +16,16 @@ class Graph:
     def __init__(self, vertices: List[str], edges: List[Tuple[str, str, float]]):
         self.vertices: Dict[str, Vertex] = {name: Vertex(name) for name in vertices}
         self.edges: List[Edge] = [Edge(u, v, w) for (u, v, w) in edges]
+
+def Initialize_Single_Source(G: Graph, s: str) -> None:
+    for v in G.vertices.values():
+        v.dist = float('inf')
+        v.prev = None
+    G.vertices[s].dist = 0
+
+def Relax(u: Vertex, v: Vertex, w: float) -> None:
+    if v.dist > u.dist + w:
+        v.dist = u.dist + w
+        v.prev = u
+
+
