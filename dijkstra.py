@@ -17,6 +17,10 @@ class Graph:
     def __init__(self, vertices: List[str], edges: List[Tuple[str, str, float]]):
         self.vertices: Dict[str, Vertex] = {name: Vertex(name) for name in vertices}
         self.edges: List[Edge] = [Edge(u, v, w) for (u, v, w) in edges]
+        # Build adjacency list
+        self.adj: Dict[str, List[Tuple[str, float]]] = {name: [] for name in vertices}
+        for e in self.edges:
+            self.adj[e.u].append((e.v, e.weight))
 
 def Initialize_Single_Source(G: Graph, s: str) -> None:
     for v in G.vertices.values():
@@ -51,7 +55,7 @@ def Dijkstra(G: Graph, s: str) -> None:
         S.add(u_name)
 
         # For each vertex in G.Adj[u]
-        
+
 
 
 
