@@ -1,3 +1,4 @@
+import heapq
 from typing import Dict, List, Optional, Tuple
 
 class Vertex:
@@ -28,4 +29,10 @@ def Relax(u: Vertex, v: Vertex, w: float) -> None:
         v.dist = u.dist + w
         v.prev = u
 
+def Dijkstra(G: Graph, s: str) -> None:
+    Initialize_Single_Source(G, s)
+
+    S: set[str] = set() #initialized set of processed vertices to empty
+    Q: List[Tuple[float, str]] = [] #initialized set of unprocessed vertices to empty
+    
 
