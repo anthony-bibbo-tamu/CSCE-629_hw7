@@ -35,4 +35,8 @@ def Dijkstra(G: Graph, s: str) -> None:
     S: set[str] = set() #initialized set of processed vertices to empty
     Q: List[Tuple[float, str]] = [] #initialized set of unprocessed vertices to empty
     
+    for v in G.vertices.values():
+        heapq.heappush(Q, (v.dist, v.name)) #add all vertices to Q with their distances
+    
+
 
