@@ -38,5 +38,21 @@ def Dijkstra(G: Graph, s: str) -> None:
     for v in G.vertices.values():
         heapq.heappush(Q, (v.dist, v.name)) #add all vertices to Q with their distances
     
+    while Q:
+        # Extract-Min operation
+        u_dist, u_name = heapq.heappop(Q)
+
+        # S = S ∪ {u} 
+        # Skip if u is already processed or if the distance is outdated
+        if u_name in S:
+            continue
+        if u_dist != G.vertices[u_name].dist:
+            continue
+        S.add(u_name)
+
+        # For each vertex in G.Adj[u]
+        
+
+
 
 
