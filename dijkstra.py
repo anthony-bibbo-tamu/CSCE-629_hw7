@@ -28,10 +28,12 @@ def Initialize_Single_Source(G: Graph, s: str) -> None:
         v.prev = None
     G.vertices[s].dist = 0
 
-def Relax(u: Vertex, v: Vertex, w: float) -> None:
+def Relax(u: Vertex, v: Vertex, w: float) -> bool:
     if v.dist > u.dist + w:
         v.dist = u.dist + w
         v.prev = u
+        return True
+    return False
 
 def Dijkstra(G: Graph, s: str) -> None:
     Initialize_Single_Source(G, s)
@@ -42,6 +44,7 @@ def Dijkstra(G: Graph, s: str) -> None:
     for v in G.vertices.values():
         heapq.heappush(Q, (v.dist, v.name)) #add all vertices to Q with their distances
     
+    # while Q is not empty
     while Q:
         # Extract-Min operation
         u_dist, u_name = heapq.heappop(Q)
@@ -55,8 +58,12 @@ def Dijkstra(G: Graph, s: str) -> None:
         S.add(u_name)
 
         # For each vertex in G.Adj[u]
-
-
+        for v_name, weight in G.adj[u_name]:
+            # try and relax the edge (u, v)
+            if Relax(G.vertices[u_name], G.vertices[v_name], weight):
+                # If relaxation was successful, update the priority queue
+                # Decrease-Key operation
+                heapq.heappush(Q, (G.vertices[v_name].dist, v_name))
 
 
 
